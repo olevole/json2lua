@@ -10,6 +10,7 @@ parse json in lua (via cjson) and print values by item
   
 # Usage
   ~~~
+  % cat json.json | json2lua
   % cat json.json | json2lua item
   % cat json.json | json2lua depth1.depth2.item
   ~~~
