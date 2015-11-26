@@ -14,16 +14,13 @@
 -- cat <file.json> | ./json2lua.lua depth1.depth2.items
 
 local json = require "cjson"
-
-local item = arg[1]
 local depth_delimer="."
-
 local depth=0
 
-if item == nil then
-	item="-"
-end
-
+-- MAIN --
+-- if we got 2 args, use 1args as filename and 2args as item
+-- instead, use 1args as item only (for read file from stdin)
+--
 
 function print_depth_prefix()
 
@@ -102,8 +99,19 @@ function print_table( v, item, table_prefix )
 
 end
 
--- MAIN --
-local json_text = file_load(arg[1])
+if arg[2] ~= nil then
+	item = arg[2]
+	filename = arg[1]
+else
+	item = arg[1]
+	filename = nil
+end
+
+if item == nil then
+	item="-"
+end
+
+local json_text = file_load(filename)
 local t = json.decode(json_text)
 
 print_table ( t, item, "" )
