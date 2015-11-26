@@ -8,7 +8,6 @@
 -- Oleg Ginzburg < olevole at olevole dot ru >
 -- 
 local json = require "cjson"
-local util = require "cjson.util"
 
 -- local json_text = util.file_load(arg[1])
 local json_text = io.read()
