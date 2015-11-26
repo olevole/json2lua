@@ -75,14 +75,14 @@ function print_table( v, item, table_prefix )
 				print_depth_prefix()
 				depth = depth + 1
 
-				print ( ">>" .. k )
+				print ( "{ " .. k .. ":")
 
 				new_prefix = k .. depth_delimer
 				print_table(v, item, new_prefix )
 				depth = depth - 1
 				print_depth_prefix()
 
-				print ( "<<" .. k )
+				print ( k .. " }" )
 			else
 				print_depth_prefix()
 				print (k, v)
