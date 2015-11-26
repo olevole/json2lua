@@ -17,10 +17,10 @@ local json = require "cjson"
 local depth_delimer="."
 local depth=0
 
--- MAIN --
--- if we got 2 args, use 1args as filename and 2args as item
--- instead, use 1args as item only (for read file from stdin)
---
+function file_exists(name)
+	local f=io.open(name,"r")
+	if f~=nil then io.close(f) return true else return false end
+end
 
 function print_depth_prefix()
 
@@ -99,12 +99,14 @@ function print_table( v, item, table_prefix )
 
 end
 
-if arg[2] ~= nil then
-	item = arg[2]
-	filename = arg[1]
-else
-	item = arg[1]
-	filename = nil
+if arg[1] ~= nil then
+	if file_exists( arg[1] ) then
+		item = arg[2]
+		filename = arg[1]
+	else
+		item = arg[1]
+		filename = nil
+	end
 end
 
 if item == nil then
